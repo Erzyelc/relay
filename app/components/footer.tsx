@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const columns = [
   {
     heading: "Product",
@@ -23,9 +25,13 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-6 py-16">
         <div className="grid gap-12 md:grid-cols-[1.5fr_repeat(4,1fr)]">
           <div>
-            <span className="font-mono text-sm font-semibold tracking-[0.3em] text-paper">
-              RELAY
-            </span>
+            <Image
+              src="/logo.png"
+              alt="Relay"
+              width={734}
+              height={237}
+              className="h-6 w-auto"
+            />
             <p className="mt-4 max-w-[26ch] text-sm leading-relaxed text-slate">
               Customer intelligence for teams that build from signal, not
               noise.
