@@ -1,26 +1,74 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Relay palette */
+  --color-ink: #0b0d0e; /* Relay Black — primary background */
+  --color-paper: #f5f5f2; /* Signal White — primary text */
+  --color-lime: #c7ff4a; /* Relay Lime — brand accent, used sparingly */
+  --color-graphite: #171a1c; /* Cards and UI surfaces */
+  --color-slate: #8a9095; /* Secondary text */
+  --color-edge: rgba(245, 245, 242, 0.08); /* Hairline borders */
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+::selection {
+  background: var(--color-lime);
+  color: var(--color-ink);
+}
+
+/* Step timer fill in "How it works" */
+@keyframes grow-x {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Light streaks flowing along pipeline lines. The streak is clipped by an
+   overflow-hidden sleeve sized to the line, so it slides in at one end and
+   out at the other. Opacity 1 in keyframes overrides the inline opacity: 0
+   that hides the streak during its animation-delay. */
+@keyframes flow-x {
+  0% {
+    left: -6rem;
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes flow-y {
+  0% {
+    top: -4rem;
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
